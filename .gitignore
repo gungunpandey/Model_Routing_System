@@ -1,0 +1,18 @@
+# Python / env
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Local environment and secrets
+.env
+
+# Model artifacts and large data (adjust as needed)
+artifacts/
+data/labeled*.jsonl
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+

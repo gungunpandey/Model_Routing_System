@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - CLASSIFIER_PATH=/models/phi3-clf
+      - PG_DSN=postgresql://postgres:postgres@db:5432/router
+    depends_on:
+      - db
+    volumes:
+      - ./artifacts/phi3-difficulty-classifier:/models/phi3-clf:ro
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: router
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  pgdata:
+

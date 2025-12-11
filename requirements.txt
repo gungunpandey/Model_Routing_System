@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+transformers
+torch
+datasets
+psycopg2-binary
+scikit-learn
+python-dotenv
+openai
+requests
+
