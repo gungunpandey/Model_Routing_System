@@ -1,0 +1,394 @@
+{"text": "How to avoid interference on longer data runs?\n\nWorking on a project with three LED strips controlled from an ESP32. They're horizontal on the wall of a theater, and the ESP32 and other components are at ground level. The top strip has a data line about 6 ft long. This seems to be causing some issues and it flickers and consistently has the incorrect colors as compared to the other strips. Swapping strips didn't help, so I've rules out a bad strip, and I've redone all of the power lines with injection at the end of the strips as well. Only the top strip has this issue. At this point, I am fairly confident that it's an interference issue...What are my best options for reducing interference on this line?", "label": "complex"}
+{"text": "Is it possible to establish multiple BLE connections to one GATT-Server?", "label": "simple"}
+{"text": "Transmission from atmega32 to PC using max232 not working", "label": "simple"}
+{"text": "Is it possible to increase the serial buffer size? - Firmware", "label": "simple"}
+{"text": "Why i cant use GPIO pins via registers?\n\nI am a beginner and trying to do everything bare metal. Right now i am trying to use GPIO pins with GPIO register. I am using [this](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) board and i am trying to light builtin LD4 led. In [this](https://www.st.com/resource/en/user_manual/dm00039084-discovery-kit-with-stm32f407vg-mcu-stmicroelectronics.pdf) manual it says that LD4 is connected to PD12 pin. Then i looked [this](https://www.st.com/resource/en/datasheet/dm00037051.pdf) datasheet and PD12 is connected to AHB1. Then i wrote the code. But led didnt light. I dont know what is wrong hope you can help. &amp;#x200B; Code: &amp;#x200B; //PD12 //AHB1 //RCC-&gt;AHB1ENR //GPIOx_MODER //GPIOx_ODR #include \"stm32f4xx.h\" // Device header int main(void){ RCC-&gt;AHB1ENR |= 0x8; //Enable GPIO Clock GPIOD-&gt;MODER |= (1 &lt;&lt; 24); while(1){ GPIOD-&gt;ODR ^= (1 &lt;&lt; 12); } } &amp;#x200B;", "label": "complex"}
+{"text": "Can I connect my own hardware to a universal 2.4GHz RF wireless receiver?", "label": "complex"}
+{"text": "Problems with SPI communication", "label": "medium"}
+{"text": "IC/microcontroller output failure under load - reason? Potential fix?", "label": "medium"}
+{"text": "How to send few arbitrary bytes to a ISO7816 smart card?", "label": "simple"}
+{"text": "LM335 / LMX35 / Temperature Sensor : Arduino / ATmega328p", "label": "simple"}
+{"text": "Inter-Integrated Circuit (I²C) Debugging and Error Handling", "label": "medium"}
+{"text": "Why is this circuit drawing excessive current (Suspected culprit: Large capacitor on switching DC-to-DC Converter Output)?", "label": "medium"}
+{"text": "How do tasks in STM32 RTOS execute concurrently?", "label": "medium"}
+{"text": "MQTT Communication with Arduino using ESP8266 ESP-01", "label": "simple"}
+{"text": "STM32F1 Can't I use the internal voltage reference as the ADC reference?", "label": "complex"}
+{"text": "microcontroller - Is it possible to emulate an SD as a slave?", "label": "simple"}
+{"text": "ENC28J60 Ethernet Module Problem.. Please Help..!", "label": "simple"}
+{"text": "Is this an improper solder?", "label": "simple"}
+{"text": "The best way to do hardware debounce? (Multi-part question)", "label": "medium"}
+{"text": "USB device not detected when reset", "label": "medium"}
+{"text": "UART Communication btwn FPGA and STM32\n\nHello everyone, I’m working on a project where I need to control an STM32 microcontroller from an FPGA using UART via a PMOD. The STM32 only has a micro-USB port, with no exposed TX/RX pins I tried using a PMOD USB-UART adapter, but it doesn’t work because USB requires a Host and a Device, and in this case both boards are Devices. Is there any way to establish UART communication between the FPGA and the STM32 using PMOD?", "label": "complex"}
+{"text": "can bus - UDS on CAN TP tests - Stack Overflow", "label": "complex"}
+{"text": "How to Program an AVR/Arduino using the Raspberry Pi GPIO | ozzmaker.com", "label": "simple"}
+{"text": "[SOLVED]New monitor exhibits random lines and artifacts and I can't find the cause ?", "label": "simple"}
+{"text": "How to Connect an ESP32 to the IoT Cloud : 8 Steps", "label": "simple"}
+{"text": "How to use Structured Text for PLC Programming", "label": "simple"}
+{"text": "How to Troubleshoot PLC Issues: Step-by-Step Solutions", "label": "complex"}
+{"text": "Touch and SD card usable at same time on CYD ?", "label": "simple"}
+{"text": "JTAG vs SWD: Choosing the Right Debugging Protocol for Embedded Systems", "label": "medium"}
+{"text": "Wake on LAN doesn't work when power down from Windows", "label": "simple"}
+{"text": "How to eliminate Voltage Spikes When Controlling 24V DC Motor", "label": "medium"}
+{"text": "How to debug such memory corruption?", "label": "medium"}
+{"text": "How to choose level shifters for serial / UART?", "label": "medium"}
+{"text": "Why so many different types of memory on STM32 eval boards? - Page 1", "label": "simple"}
+{"text": "How to use Flash as EEPROM? What care need to be taken?", "label": "simple"}
+{"text": "How to repair a micro SD card with I/O errors?", "label": "medium"}
+{"text": "How do I drive high current 12V using arduino Arduino?", "label": "medium"}
+{"text": "Can I recover a MIFARE Classic card?", "label": "simple"}
+{"text": "How do I secure my wireless network by using WPA PSK on TP-Link Wireless G Router?", "label": "simple"}
+{"text": "For connecting two micro which one is better, UART or RS232?", "label": "medium"}
+{"text": "How to define sensor timestamping precision requirements", "label": "simple"}
+{"text": "How to Use XBee Modules As Transmitter & Receiver", "label": "simple"}
+{"text": "Driving a 5V relay board with ESP32 : not working", "label": "simple"}
+{"text": "ESP32 ADC – Read Analog Input in Arduino IDE – DeepBlue", "label": "complex"}
+{"text": "How to ssh into a server running on a home network, behind a router?", "label": "simple"}
+{"text": "h bridge - Why does my MIC4605 keep blowing up?", "label": "simple"}
+{"text": "Troubleshooting OPC UA Communication Issues", "label": "complex"}
+{"text": "DataLogger IoT WiFi Connectivity Issues", "label": "medium"}
+{"text": "Switching arduino to esp32", "label": "simple"}
+{"text": "Using Multiple Antennas? Save costs with a Multiplexer", "label": "simple"}
+{"text": "how to use hx-53 (IR Transmitter Infrared Sensor Module) with ESP32?", "label": "simple"}
+{"text": "Better handling of MAC address mismatch with ESPHome devices", "label": "simple"}
+{"text": "CAN Bus - Internal Oscillator - Electrical Engineering - Codidact", "label": "complex"}
+{"text": "Reasons an MCU Won't Start on Power-Up", "label": "simple"}
+{"text": "How do I establish communication with ELM327 OBDII WiFi device with ESP32 module", "label": "simple"}
+{"text": "What command APDU should be sent to read binary of an transparent EF?", "label": "simple"}
+{"text": "ESP32 not decoding IR Receiver?", "label": "simple"}
+{"text": "Arduino Nano to Linux over RS485 Modbus", "label": "simple"}
+{"text": "IEC 61131-3:2025: UTF-8 strings and more?", "label": "simple"}
+{"text": "802.3af POE splitter, still not safe?", "label": "simple"}
+{"text": "5 Reasons Your PCI Compliance Scan Failed", "label": "simple"}
+{"text": "How to Use the ESP32 to Listen for TCP Packets on a Specific Port", "label": "simple"}
+{"text": "OTA updation completes but ESP does not switch to new firmware", "label": "simple"}
+{"text": "MUX36S16: USB mux/switching? - TI E2E - Texas Instruments", "label": "medium"}
+{"text": "How to Use 32 Channel Servo Control Board : 4 Steps", "label": "simple"}
+{"text": "Remote debugging using gdbserver over ssh", "label": "medium"}
+{"text": "One of the greatest problems with the ESP32 is it may have 18 ADC inputs, but if you use WiFi you cannot use any of the 10 inputs that direct to ADC2. Yes 10 inputs cannot be used! What were Espressif thinking when they built the next best IoT device and knobling over half the ADC inputs if you used the typical way to connect to the Internet! Reply", "label": "complex"}
+{"text": "S/PDIF Jitter: Myth or Reality?", "label": "medium"}
+{"text": "What is the best Battery for the ESP32", "label": "simple"}
+{"text": "Why IR is not working? | Forum for Electronics", "label": "simple"}
+{"text": "Stm32 and Bluetooth PCBs\n\nHi there. I am working on device which gonna read CAN bus of the car and send some data via Bluetooth to the phone. The heart of it will be STM32F4. I also wanna create a PCB of this device. Don't have any previous experience in PCB design and as I already found out creating PCB with Bluetooth is a difficult thing. So I decided to get some ready module e.g. JDY-23 and put it to my PCB with STM32. Is that a good idea and what's the best way to put one PCB(module) to another (my). Or is there a better way? I also know there are STM32WB microcontrollers but I guess they don't have built in antenna and I will have to design it. So it's not really the option.", "label": "complex"}
+{"text": "SFP+ to Ethernet adapter becomes unresponsive after some time\n\nHi all. I have a Unifi SFP+ to RJ45 adapter plugged into the SFP port (port 25) and into my Unraid NAS which supports 2.5GB but after about an hour it becomes unresponsive. This is the second device it’s happened with as well so I believe it’s an issue with the adapter. Any solutions here?", "label": "complex"}
+{"text": "How to choose R and C to reduce noise on analog input of arduino?", "label": "medium"}
+{"text": "MCU JTAG Debugger communication", "label": "medium"}
+{"text": "Is it safe to use GPIO as GND for multiplexed 7-Segment display or should transistors be used?", "label": "simple"}
+{"text": "My ESP32 is scanning all the nearby WiFi Networks but it does not connect to my WiFi Router using Arduino IDE (Return Value of WiFi.status API = 6)", "label": "medium"}
+{"text": "[General]Esp32 drive electromagnetic contactor, controller and lcd getting noise and hang issue.", "label": "medium"}
+{"text": "TLS certificate verification failure", "label": "medium"}
+{"text": "Still having a problem connecting to multiple bluetooth speakers.", "label": "simple"}
+{"text": "guidance : how to implement a simple low latency protocol?", "label": "medium"}
+{"text": "SGMII Interface fails to establish 1Gbps connection selectively", "label": "complex"}
+{"text": "Microcontroller or Linux SoC — Where’s the Line?", "label": "simple"}
+{"text": "How to prepare my firmware for FCC Part 15 testing", "label": "simple"}
+{"text": "CAN Example - ATmega32M1 - STK600 - Education", "label": "simple"}
+{"text": "HMI does not respond to touch input due to incorrect grounding", "label": "simple"}
+{"text": "Can I treat the USB controller in the ATMEGA8U2 as seperate from the rest of the microcontroller?", "label": "medium"}
+{"text": "How to synchronize readings with the HIGH and LOW states of a PWM output?", "label": "medium"}
+{"text": "6 Common Communication Problems Involving Serial Connections", "label": "simple"}
+{"text": "HA/ESP connection doesn't restore after brief network loss", "label": "simple"}
+{"text": "Continuous rotation servo with software PWM not working as expected", "label": "medium"}
+{"text": "How can I get my atmega328 to run for a year on batteries?", "label": "simple"}
+{"text": "minimum reasonable buffer size on ESP32?", "label": "simple"}
+{"text": "Filtering noisy signal from analog hall sensor\n\nI am a college student and a totally newbie to embedded system and electronics. Im trying to make a simple version of a hall effect keyboard (similar to the [wooting](https://wooting.io/)) as my final project and i have a few questions: 1. I am using a Blackpill (STM32F411CEU6) alongside a multiplexer (74HC4067) and hall effect sensor (SS49E) and when i connect them using a breadboard, the value coming from the sensors tend to wobble a lot (+-60) even though i have tried using 0.1uF capacitor for each sensor. (Connecting the VCC and GND pin). Is this normal behaviours for using a breadboard and if so is there any way i can improve the signal, I want to priotize hardware solution first before using software filters. 2. I am intending to make a PCB for the components after solving the noise problem. Any tips regarding the process of drawing a pcb would be great. Below is a schematic i made following [this guide.](https://www.youtube.com/watch?v=TfKz_FbZWLQ&amp;t=1661s) If anyone has a document or guide for this stuff i would be very grateful :). https://preview.redd.it/rpev89u6pm4f1.png?width=1148&amp;format=png&amp;auto=webp&amp;s=084d4eaf8c06e7c915368b399a8c468aeb232a6c", "label": "complex"}
+{"text": "Is there a way to store variables in a non-volatile memory without EEPROM? - Question\n | Mbed", "label": "simple"}
+{"text": "Using noise suppression capacitors on powersupplies?", "label": "medium"}
+{"text": "ESP32 I2C timeouts in PIO but works ok in Arduino", "label": "medium"}
+{"text": "[lwip-users] broken DHCP/ARP interaction", "label": "simple"}
+{"text": "How to Wire Up Piezoelectric Sensor? A Comprehensive Guide. - Electronic component at low cost", "label": "simple"}
+{"text": "How do I detect a failed AES-256 decryption programmatically?", "label": "simple"}
+{"text": "How to set up performance benchmarking and profiling on an STM32 MCU - DEV Community", "label": "complex"}
+{"text": "how to start an opc ua client for embedded STM32 board", "label": "simple"}
+{"text": "Controlling 2 PWM Applications with 2 LEDC Channels fails", "label": "medium"}
+{"text": "Arduino RC522 RFID Door Unlock", "label": "complex"}
+{"text": "Is it possible to utilize an AES-128 encryption hardware unit for AES-256?", "label": "simple"}
+{"text": "Debounce relay switch connected to logic input?", "label": "medium"}
+{"text": "When should one use an external crystal for this MCU given that the internal oscillator is much faster?", "label": "simple"}
+{"text": "Heavy microphone distortion in 32 bit float through PA\n\nI was videotaping a celebration yesterday. Covered these types of events for the the past 25 years and this is the first time I've come across this audio problem (and with a piece of gear that is supposedly much less likely to distort). Here are the details. If anyone can explain why this was happening, I'd be grateful. This WAV file excerpt was recorded via direct input to a Zoom F3 from a QSC KW122 powered PA at an event (loop-through output via XLR cable), and run into a barrel XLR attenuator set to -40dB. Levels can't be 'set' on the Zoom F3, but the waveform was quite normal during the recording at a visual x4 zoom setting, no obvious spikes. Music and mic were very loud...but not distorted when I was listening without my foam earplugs. The spectrogram shows a massive difference between the two levels, at least 30dB Sample clip: [https://soundcloud.com/user-725122131/distorted-32-bit-float](https://soundcloud.com/user-725122131/distorted-32-bit-float) I've had the Zoom F3 for a few months now, and this is the first time it's distorted any part of the audio. I can understand that the inputs can be overloaded, but with a -40dB in-line attenuation and 32 bit float, I figured that I was more than safe. I've done loop-through outputs from identical systems in the past without this problem. Like I said, to the audience's ear, the MC's mic did not sound distorted, and the levels were pretty well matched to the music levels (to the point that it was sometimes hard to hear the an", "label": "complex"}
+{"text": "adb connection over tcp not working now", "label": "simple"}
+{"text": "Applying a PWM signal to a 12V fan with a 3.3V microcontroller?", "label": "medium"}
+{"text": "Mosfet failure. Suspect manufacturing defect? - Page 2", "label": "medium"}
+{"text": "MQTT drops connections after 24hrs?", "label": "simple"}
+{"text": "ESP32 unable to reconnect to wifi after reboot with Huawei, Fastgate DN8245f2", "label": "simple"}
+{"text": "Bluetooth/BLE over TCP/IP via ESPHome?", "label": "simple"}
+{"text": "rs232 and serial with UART\n\nHi everyone. My question is why do I need a max232 chip. I believe it provides the funny voltages rs232 needs to work. The thing is why. I have a number of devices that use usb to rs232. My Arduino nano, Arduino mega, some rs232 converter I can plug into my AVR for serial coms. It seems like I dont really need that max232 chip in the first place. Maybe I can connect my UART directly to my rs232 to usb converter? I hope this is not a super silly question, it just feels like the max232 is not needed at all?", "label": "complex"}
+{"text": "How to Reduce Noise Interference in Sensor Readings", "label": "complex"}
+{"text": "LCD not working anymore after firmware upgrade", "label": "simple"}
+{"text": "Why am I getting wrong compass heading using magnetometer readings?", "label": "simple"}
+{"text": "ATmega328P development board not working", "label": "simple"}
+{"text": "Can anyone please tell me which chip is the EEPROM chip on this radio? I really don’t want to pay $170 to have my salvage yard find flashed, I would be eternally grateful for any help.. I deleted my old post because you couldn’t see well, I moved the CD player to get a better one. Please and thanks!", "label": "medium"}
+{"text": "Corrupted image with SPI 5MP Camera at 2nd Loop", "label": "medium"}
+{"text": "Microcontroller or Linux SoC — Where’s the Line?", "label": "simple"}
+{"text": "How to Filter Sensor Noise Using a Passive Low-Pass Filter", "label": "complex"}
+{"text": "Strange problem. (about comparator)", "label": "simple"}
+{"text": "Why Does My Oscillator Drift in Frequency? (Stability Solutions)", "label": "complex"}
+{"text": "How to implement 8-bit DAC (Digital to Analog conversion) with Arduino - atmega 2560 microcontroller?", "label": "complex"}
+{"text": "STM32F407 SDIO SD card, can't initialize.", "label": "simple"}
+{"text": "I2S OK on ESP32, not Pico?! - Raspberry Pi Forums", "label": "simple"}
+{"text": "Countermeasures for Reducing Switching Noise", "label": "medium"}
+{"text": "what is the correct way to capture ADC using fpga", "label": "complex"}
+{"text": "Why websocket connection closes after few seconds", "label": "simple"}
+{"text": "How can I control 2 servos without an external power supply?", "label": "simple"}
+{"text": "Wake-on-LAN packet won't wake computer", "label": "medium"}
+{"text": "Up to 10 years of battery life for LoRa sensors? This is what it looks like in practice! | LineMetrics Smart Building Platform", "label": "simple"}
+{"text": "SWD woes using STM32C011 cant connect using swd", "label": "simple"}
+{"text": "How does JTAG flash memory programming work?", "label": "simple"}
+{"text": "What happens with the Gatt Characteristic after it has been read?", "label": "simple"}
+{"text": "UART behavior for CTS/RTS - Kinetis bugs?| page 2", "label": "medium"}
+{"text": "4x 2:1 Multiplexer with multiple select lines. Does that exist?", "label": "medium"}
+{"text": "When connecting a JTAG, Serial, or Parallel between powered devices how is it that one of the devices doesn't get fried?", "label": "simple"}
+{"text": "How to generate a pwm signal that varies atleast 20times between 0-5V range using Atmeaga32 avr mcu?", "label": "medium"}
+{"text": "How to handle a large JSON object?", "label": "simple"}
+{"text": "How to optimize code for flash memory esp32 arduino framework", "label": "complex"}
+{"text": "DALI Lighting System Issues: Your Troubleshooting Checklist", "label": "complex"}
+{"text": "How Multiple slave to single master SPI software slave management works", "label": "medium"}
+{"text": "How to improve date-time control from RTC?", "label": "simple"}
+{"text": "How to connect several sensor boxes (ESP32) via WIFI/webserver/...?", "label": "simple"}
+{"text": "How to store GPS data from the arduino to a remote server using the ESP32 NodeMCU", "label": "simple"}
+{"text": "Can not upload firmware to arduino mega - Troubleshooting", "label": "complex"}
+{"text": "[AVR]how to interface long range RFID with GSM+GPS module using ATMEGA164 microcontroller?", "label": "complex"}
+{"text": "WiCAN ESP32-based open-source OBD2/OBD-II Vehicle (car or truck) CAN Bus Diagnostics to WIFi/BLE/USB adapter for Home Assistant integration?", "label": "medium"}
+{"text": "Identifying viable UART modules for STM32F411RE via documentation?", "label": "medium"}
+{"text": "Help: is the bridge between B- and MOSFET normal?", "label": "medium"}
+{"text": "How to identify the data bytes used for CRC(checksum) in an USB ISO-Transfer?", "label": "medium"}
+{"text": "Is it safe to use a bridge rectifier at (up to) its rated current, at DC?", "label": "medium"}
+{"text": "[SOLVED]STM32L0 Debugging in Low-Power modes", "label": "medium"}
+{"text": "EEPROM write timing and data loss during power-off in low-cost microcontrollers\n\nHi everyone, I’m investigating an interesting EEPROM write behavior in a low-cost consumer device that measures temperature (simple microcontroller-based design, probably Holtek or Padauk class). In one specific test, I noticed that a newly measured value wasn’t saved to EEPROM, and the device showed the previously stored value on the next power-up. To understand this better, I did about 40–50 tests and found the following pattern: • Normally, the device writes intermediate measurement values to EEPROM before the final “beep” or confirmation. • If the measurement is aborted early, it still usually saves the latest stable value. • In one rare case, it didn’t write the new value, even though the temperature was stable for several seconds — only the old EEPROM value remained. • If I slightly touch or move the battery, the memory resets completely, showing a “LOC” code. This suggests a very simple architecture: • RAM holds the live reading, • EEPROM commit happens periodically or after a stability threshold, • and power/voltage fluctuations may interrupt the write process. ⸻ ❓My question: From a firmware/embedded design perspective, what are typical strategies in ultra-low-cost MCUs to handle EEPROM writes safely when power might drop suddenly? Specifically: • Are EEPROM commits usually buffered, interrupted, or atomic? • Is it common to perform EEPROM writes periodically during measurement (not only after an event)? • Could a short button hold or battery voltage dip realisticall", "label": "complex"}
+{"text": "How to set a TLS certificate for OpenMQTTGateway with openssl (really an openssl question)", "label": "simple"}
+{"text": "Troubleshooting Common Issues in MCU STM32 Development", "label": "complex"}
+{"text": "How can I decode unknown Infrared remote control protocols?", "label": "simple"}
+{"text": "Having issues with RS232 UART wiring to a physical PC connection", "label": "medium"}
+{"text": "TLS Handshake failure while connecting to mqtt broker", "label": "medium"}
+{"text": "How to scrape data from an xml? - Configuration", "label": "simple"}
+{"text": "How Can I Setup a FTP-Client Connection on embedded device?", "label": "simple"}
+{"text": "How to store config data to stm32f103C8t6 flash?", "label": "simple"}
+{"text": "Troubleshoot Recent 802.1X Failure Alert in Meraki Device", "label": "complex"}
+{"text": "How to communicate with USB 3G modem?", "label": "medium"}
+{"text": "How do I resolve these ESP-TLS connection errors?", "label": "medium"}
+{"text": "Arduino HC-SR04 sensor through CD74HC4051E multiplexer using single wire", "label": "simple"}
+{"text": "Photodiode noise cancelling, how to?", "label": "medium"}
+{"text": "Battery monitoring on ESP32-S3 Super Mini dev board\n\nHey everyone! I'm working on an e-paper calendar + weather + news project using an ESP32-S3 SuperMini board with a WeAct 4.2'' e-paper display. It updates every 10 minutes and uses deep sleep for power efficiency. The board has an integrated LTH7R charging IC for the Li-Po battery. My main challenge is that there is not Datasheet available for the dev board (Bought on AliExpress) and I would like to monitor the battery. The LTH7R itself won't provide battery voltage monitoring functionality (only for stopping charging) as per its datasheet. The board has multiple ADC-capable pins, and I'm wondering if there might be an internal voltage divider already connected to one of them (common in some ESP32 boards). AI recommended me to write a simple program to scan the ADC pins while connected to a fully charged battery (4.2V) to see if any reads approximately half the battery voltage, indicating an internal divider. Does that make sense? Or would it be better to build a voltage divider and connect it to an ADC pin? Would you recommend me to use a Charging module (TP4056) to add extra protection and faster battery charging? I'm planning on using a large LiPo (4500mah) (not the 18650 in the picture). https://preview.redd.it/sxepwmwwj6ce1.jpg?width=1600&amp;format=pjpg&amp;auto=webp&amp;s=6f4e359a9eb86e16f4cc6a48b56beb8c97c5c2f5 https://preview.redd.it/9meaa2xwj6ce1.jpg?width=1920&amp;format=pjpg&amp;auto=webp&amp;s=866e566f47e9901c3dc67bd70f0d1ad4cbb81d63", "label": "complex"}
+{"text": "3.5\" tft touch screen for arduino mega", "label": "simple"}
+{"text": "How to Fix Bad Chinese Arduino Clones", "label": "medium"}
+{"text": "M5Stack ESP32 with POE - does it work? - ESPHome", "label": "simple"}
+{"text": "Is the ESP32-S2 EEPROM persistent when power cycling and reset?", "label": "medium"}
+{"text": "How can I setup a Bluetooth device to serve web pages to a BT client via TCP/HTTP?", "label": "simple"}
+{"text": "How to get and interpret digital accelerometer data?", "label": "simple"}
+{"text": "Why does a full-wave bridge rectifier have noisy output with no load?", "label": "simple"}
+{"text": "What are some reasons my atmega32u4 loses program when disconnected from power?", "label": "medium"}
+{"text": "CAN / RS485 bus over parallel rails instead of twisted pairs?", "label": "simple"}
+{"text": "Arduino Nano as USB HID-Device", "label": "medium"}
+{"text": "Linux clock framework - do I need to use it?", "label": "simple"}
+{"text": "On the overheating issues of the OV3660 and OV5640 camera modules", "label": "medium"}
+{"text": "Can the length of a wire impact SPI transmission?", "label": "medium"}
+{"text": "Connecting a 12V Relay to Arduino : 8 Steps", "label": "simple"}
+{"text": "Noise on ESP8266 ADC when using regulator", "label": "complex"}
+{"text": "How to Implement Data Communication Using Modbus RTU? (part 1)", "label": "simple"}
+{"text": "Intermittent data corruption when using SPI between Teensy 4.1 and Rpi Pico", "label": "medium"}
+{"text": "How to use a camera module with a microcontroller? - Blog", "label": "simple"}
+{"text": "Removing background noise from ADC mic input.", "label": "complex"}
+{"text": "Do voltage dividers waste battery?", "label": "medium"}
+{"text": "Ubuntu command line to change input source on a display monitor?", "label": "simple"}
+{"text": "SIf I send wroing messages, for example, ‘bread’ or ‘milk’, not ‘led_on’ nor ‘led_off’, I hope ESP32 can respond ‘Wrong code’, I don’t know how to edit the code. Can you help me?", "label": "medium"}
+{"text": "How to use I2C Communication in STM32 Microcontroller", "label": "medium"}
+{"text": "I have a problem to stream images or communicate with my camera. What is the troubleshooting procedure? | Flir", "label": "complex"}
+{"text": "What is the consensus on the Raspberry Pi Pico?", "label": "simple"}
+{"text": "STM32 Noise Variability Problem", "label": "medium"}
+{"text": "How to program a microcontroller via USB using JTAG?", "label": "medium"}
+{"text": "Why does GPS not give any info before it has a fix?", "label": "medium"}
+{"text": "How do you organize your thoughts?", "label": "simple"}
+{"text": "Can ISO 7816 (EMV) based smart card handle interrupts?", "label": "simple"}
+{"text": "Sensor has interrupt pins. What can I connect them to?", "label": "simple"}
+{"text": "How to parse OR decode the hex data from a CAN bus log file?", "label": "simple"}
+{"text": "Cannot get internet access with my new 5g modem", "label": "simple"}
+{"text": "Interchangeability of SWD programmers", "label": "simple"}
+{"text": "Can an led be controlled by analog pin?", "label": "simple"}
+{"text": "SSH Server Configuration Best Practices?", "label": "simple"}
+{"text": "Arduino Mega to ADC SPI communication is not working", "label": "complex"}
+{"text": "Checking EEPROM for corruption / methods to avoid corruption", "label": "simple"}
+{"text": "How to achieve low power in NRF24l01 when receiving", "label": "complex"}
+{"text": "How to change PWM (ledc) percentage via counter variable in HA or ESP32?", "label": "medium"}
+{"text": "How to connect multiple devices on avr(atmega16/32) using UART?", "label": "medium"}
+{"text": "How to implement websockets on an embedded device server?", "label": "simple"}
+{"text": "Problem with SPI communication when Silabs Si86xx digital isolator is used", "label": "medium"}
+{"text": "How to debug ssh incoming connections?", "label": "medium"}
+{"text": "Solving Compatibility Issues Between IEC 61131-3 and Legacy PLCs", "label": "medium"}
+{"text": "Is there a down side to setting the sampling time of a SAR ADC as long as possible?", "label": "complex"}
+{"text": "Hello, I just received this esp32 and i tried to upload a sketch to test it, but the builtin led keeps blinking like this and the board does not execute the sketch.(no errors during upload, tried keeping pressed the boot button while uploading, test sketch in comments)", "label": "complex"}
+{"text": "New Arduino Bang Library Examples", "label": "simple"}
+{"text": "CAN communication with Arduino", "label": "simple"}
+{"text": "bluetooth antenna circuit difference. Is balun better?\n\nHi, Im working on project that is bluetooth, when i started Bluetooth circuit i found out 2 ways of making antenna circuit. Is balun better than the circuit on the first image? And what type of antenna should I use for 2.4GHz pcb design? thanks", "label": "complex"}
+{"text": "Unable to add devices to Home Assistant with Matter via Thread", "label": "simple"}
+{"text": "Flashing the Firmware with ST-Link (unable to communicate through USB)", "label": "medium"}
+{"text": "What is the use of ISP and ICSP in Arduino?", "label": "simple"}
+{"text": "How to set audio sampling rate using ADC/DAC Mode of ESP32 I2S driver?", "label": "complex"}
+{"text": "Adding a smoothing capacitor to a bridge rectifier. Will this also add to the overall load seen at wall?", "label": "medium"}
+{"text": "Canbus communication not working without reset my data senders stm32s", "label": "medium"}
+{"text": "Best method of packet transmission between an array of sensor nodes?", "label": "simple"}
+{"text": "ESP32 problem restarting ble/bluetooth after light/deep sleep", "label": "simple"}
+{"text": "Sending info from Arduino Due to Elecrow ESP32 display", "label": "simple"}
+{"text": "ESP32-cam with servo control won't work. Arduino IDE", "label": "simple"}
+{"text": "Trouble Shooting Some Common Serial Communication (RS232 & RS485) Issues", "label": "medium"}
+{"text": "How many devices can be connected to one wire bus", "label": "simple"}
+{"text": "SPI Digital Potentiometer not working on ESP32", "label": "medium"}
+{"text": "RC Oscillator for high frequency not working", "label": "medium"}
+{"text": "Modbus CRC Check Error ESP32 / ESP8266 Power Inverter", "label": "medium"}
+{"text": "How to Interface an Analog Sensor with a Microcontroller Using an ADC", "label": "complex"}
+{"text": "Streaming Issues With ESP32 Camera With OV2640", "label": "medium"}
+{"text": "AVR studio 6.2 flash atxmega32e5 signature issue", "label": "medium"}
+{"text": "OTA failing on electron running 3.3.0 on third party sim", "label": "simple"}
+{"text": "How To Add UART To Your FPGA Projects", "label": "medium"}
+{"text": "What is causing this Op-Amp Distortion", "label": "medium"}
+{"text": "SRAM continually failing at certain addresses", "label": "simple"}
+{"text": "Is it possible to setup timeout for receiving data over USB in STM32 MCUs?", "label": "medium"}
+{"text": "Don't RF devices need to be shielded to pass FCC?", "label": "complex"}
+{"text": "Why my phones won't show Beidou/BDS signal", "label": "simple"}
+{"text": "How to detect current flow in a live wire running at 220V AC, using Esp32", "label": "medium"}
+{"text": "PTP clock synchronization\n\nI’ve a [PTP Time Stamp Unit](https://support.xilinx.com/s/article/67239?language=en_US) in a Xilinx/AMD FPGA. Clocking it with external 250MHz emio_tsu_clk which comes from 300MHz [si570](https://www.skyworksinc.com/-/media/skyworks/sl/documents/public/data-sheets/si570-71.pdf). I’ve got it working with MCAB and [ptp4l](https://sourceforge.net/projects/linuxptp/) Linux drivers and it synchronizes to the accuracy of a second (This is how accurately I can verify with NTP timestamp). The master is another Linux machine with ptp4l and PTP capable 10G network card. I’ve 94 bit tsu_cnt from MPSoC which I can access in PL and a tsu_cmp_val signal which should go high when the MSB 70 bits are equal to the programmed timestamp from ptp sync messages. But this signal never goes high for me maybe because my clock drift/offset is different/too much to that of the GPS/Atomic clock. To achieve this I should synchronize the clock from si570 to that of the master clock. So the accuracy of my clock is improves and with minimal offset. What are my options?", "label": "complex"}
+{"text": "Facing problem with time synchronization(PTP)", "label": "simple"}
+{"text": "WiFi TX Performance is randomly terrible on ESP32-S3-DevKitC, and its worse when I touch some jumper cables\n\nI've got an ESP32-S3-DevKitC connected to 2 sensors. There's a lot of jumper wires carrying data signals, and 2 GND/3v3 jumpers. I've found a really weird issue where WiFi transmission performance suffers when I touch one of the jumper cables. The RSSI is the exact same, (-25 ish) in both situations. I've heard some complaints about the WiFi on this particular devkit, but is unlike anything I've ever encountered. The WiFi worked better when I kept my finger behind the antenna, and I initially assumed my devkit just had a poorly tuned antenna, but it seems weird that lightly touching jumper cables connected to the ESP can reduce WiFi TX performance significantly. Does anyone know what could possibly be going on?", "label": "complex"}
+{"text": "Standalone Atmega328 without Arduino bootloader", "label": "simple"}
+{"text": "ESP-32 not working with big motor", "label": "simple"}
+{"text": "Strange noise in DC-DC converter", "label": "medium"}
+{"text": "How does DCDC save power over an LDO?", "label": "simple"}
+{"text": "usb - Use CDC-ACM without INTERRUPT endpoint?", "label": "medium"}
+{"text": "Question about using multiple AHT21 sensors on ESP32 DevKit with Qwiic connectors\n\nHi everyone, I’m working on a project using an ESP32 DevKit board and multiple AHT21 temperature and humidity sensors to create a heat map for a lab. I want to connect several sensors to the same ESP32 via I2C using their Qwiic connectors. I have a couple of questions: 1. Is it possible to connect two or more AHT21 sensors in series using the Qwiic connectors on the sensor boards? 2. Can the I2C address of the AHT21 sensors be changed or configured to avoid conflicts? 3. If not, is the Qwiic connector mainly meant to chain sensors with different I2C addresses? 4. Or do I necessarily need to use an I2C multiplexer to handle multiple identical sensors on the same bus? Any advice or experience on this would be really helpful! Thanks in advance!", "label": "complex"}
+{"text": "Why am I getting a connection timeout error with ssh?", "label": "medium"}
+{"text": "Why isn't my LoRa module working with Arduino?", "label": "simple"}
+{"text": "How to Troubleshoot Connectivity Issues with Bluetooth Handheld RFID Readers | Step-by-Step Fixes", "label": "complex"}
+{"text": "Communication between micro controllers - I2C, SPI, UART?", "label": "medium"}
+{"text": "Failed to connect to ESP32: No serial data received", "label": "simple"}
+{"text": "High precision clock sync using ESP32 via WiFi\n\nPlan: I want to do sound localization using microphones connected to ESP32s. Spicy extra: the microphones shall not be connected to the same device. So getting high resolution synchronized timestamps of the samples is critical for me. Coming from Ethernet-bound TSN just fire up a PTP session and get Nanosecond synced clocks. Problem solved. But: this time I'd prefer Wifi to get a bit more flexibility for the placement of the devices. How would you solve this problem? I prefer ESP-IDF. But also can switch to Zephyr. My trials so far: - SNTP: works roughly down to 1ms - 802.11mc: interesting thing. Maybe can misuse this. But got no AP supporting it. - PTP: found no good implementation so far for esp-idf Edit: GPS with PPS", "label": "complex"}
+{"text": "Noise: How to isolate ESP32 and external ADC?\n\nI am planning on measuring very small voltages at about 100 kHz and was wondering how to best reduce noise. The ESP32-S3 (currently an Amazon-bought dev board) is powered via PC USB. That’s where the noise starts. The 3v3 output on the dev board is noisy, the com-pins and CS are noisy, and the GND is noisy. The TI ADCs (not sure which one I’m eventually going with) would run much better without all that noise. I am particularly interested in very low-cost options. What are your suggestions? What works for you? Thx!", "label": "complex"}
+{"text": "RS232-to-Ethernet adapter configuration not working [closed]", "label": "medium"}
+{"text": "What is the simplest way to generate PWM without a Microcontroller?", "label": "medium"}
+{"text": "What's wrong with level shifter output?", "label": "medium"}
+{"text": "How to communicate with LTE USB modem using AT commands?", "label": "medium"}
+{"text": "Unable to decipher I2S ADC data on ESP32 as read from WM8906 Audio Codec", "label": "complex"}
+{"text": "How to transmit data from an analog multiplexer to an RS232 COM port on a PC", "label": "simple"}
+{"text": "Using the same pin for multiple inputs?\n\nI see people using the Nano and Micro and apparently doing projects with them, but on my most recent project I had to start over with a Mega because the Uno didn't have enough pins. So my question is: is it possible for a pin to read inputs from two different switches/sensors/something else and if so, how?", "label": "medium"}
+{"text": "[SOLVED] How to debug faulty connection to camera board?", "label": "medium"}
+{"text": "Debugging USART on an Atmel ATMega328P Microcontroller", "label": "medium"}
+{"text": "Arm cortex-M4 crashes with hardfault", "label": "medium"}
+{"text": "How can I build a wireless webcam that transmits live images to my laptop? [closed]", "label": "simple"}
+{"text": "Connect to wifi works only without password (Problem around WPA security)", "label": "simple"}
+{"text": "Curious noise on FPGA Microcontroller connection", "label": "medium"}
+{"text": "How to program an ATMega328 using a Serial Port without using programmers such as USBasp", "label": "medium"}
+{"text": "NFC reader with ESP32 instead of RPi?", "label": "simple"}
+{"text": "What is RTS and CTS flow control?", "label": "simple"}
+{"text": "HELP: gps not talking? - Arduino", "label": "simple"}
+{"text": "How to reduce power in barebone setup of atmega328p?", "label": "simple"}
+{"text": "How to use an audio output to generate IR frequencies", "label": "simple"}
+{"text": "Serial communication baud rate issue", "label": "medium"}
+{"text": "How to implement functions within a UART Interrupt Handler?", "label": "medium"}
+{"text": "Bluetooth client speed and buffering issue", "label": "medium"}
+{"text": "USB CDC on STM32F4 randomly disconnects when switching 3-phase contactor (motor), STM32 keeps running. PC cannot detect USB after disconnect. what should I do??\n\nhere is my **setup** * STM32F401CCU6 WeAct Blackpill, which controls * A 3.3V-24V Optocoupler, which controls * A Siemens 3phase contactor to switch a 400VAC induction motor, with flyback diode on the solenoid. * Absolute Encoder mounted inside the motor and read out by two RS485 transceivers. Here is the **simplified circuit diagram** https://preview.redd.it/h2fz1m1g4uzf1.png?width=1342&amp;format=png&amp;auto=webp&amp;s=075d8d1db6bda9065e66185445375aef80fbea0b Software setup in the STM32. Unfortunately I am not allowed to provide the full code, which is quite simple anyway with CDC\\_Transmit\\_FS and CDC\\_Transmit\\_Receive etc. * USB\\_OTG\\_FS, no VBUS sensing, HSE 25MHz **And here is the problem** * USB disconnects occasionally (but not always, and completely at random intervals) exactly at the time when the motor is switched on or off. **Diagnosis clues** * USB does not disconnect when 400VAC is not connected * After disconnecting, D+ and D- show completely no activities (measured with an oscilloscope) * When the USB disconnects, at first I can still see the COM Port in Device Manager. But when I deactivate and reactivate the COM Port, it disappears with the error: Error 45 USB Device not recognized etc. * I have to unplug and plug the usb cable, essentially resetting the STM32, in order to clear the error. Can someone help me with any of these points 1. **what is happening there physically?** I have galvanically isolated all sensitive spots. Is the radiated noise that bad?", "label": "complex"}
+{"text": "When do we need an external crystal for an Atmega chip?", "label": "simple"}
+{"text": "IR receiver output noise when there is no signal input", "label": "medium"}
+{"text": "Help me bring the Blackberry Trackball back from the dead", "label": "simple"}
+{"text": "Why were these FETs chosen for this buck-boost regulator?", "label": "complex"}
+{"text": "How to Transfer data to a microcontoller using UDP protocol?", "label": "simple"}
+{"text": "Why UART data is getting corrupted?", "label": "medium"}
+{"text": "Powering an STM32F103C8T6 With 12 Volts?", "label": "simple"}
+{"text": "Esp32-Cam Error: Failed send cmd [init #1] Help?", "label": "medium"}
+{"text": "How to give power to ESP32 using 12v battery - TI E2E", "label": "simple"}
+{"text": "how to output two digital signal from PXI 6363 in labview", "label": "simple"}
+{"text": "CDC ACM USB Serial Device doesn't show up on ls /dev/tty*, can't access it", "label": "medium"}
+{"text": "Can I change a pin's designation on the ESP32S3 to either analog (A) or digital (D) with an \"if\" statement in the loop?", "label": "complex"}
+{"text": "PDM audio output with STM32 - is it possible?\n\nI've seen a couple of projects that did PDM (pulse density modulation) audio output with the ESP32, eg https://www.youtube.com/watch?v=oZ39VCUvKjw&amp;ab_channel=atomic14 For the STM32 there's a lot of material about PDM microphones, but I cannot find anything related to outputting audio with PDM (versus PWM). Any clues as to why? Technical limitations?", "label": "medium"}
+{"text": "Changing clock frequency on STM32 without impacting peripherals?", "label": "medium"}
+{"text": "Issue with STM32F103CBT6 and Rotary Encoders", "label": "medium"}
+{"text": "Automated way to generate MQTT Sensors? - Configuration", "label": "simple"}
+{"text": "How to use PWM analog outputs on an ESP32", "label": "medium"}
+{"text": "Problem when we are using ESP32 & HTTP & TP-Link router", "label": "simple"}
+{"text": "Troubleshooting Common Issues with Your Capacitive Touch Screen", "label": "complex"}
+{"text": "is it possible to format ATTiny85 with raspberry pi zero 2 w", "label": "simple"}
+{"text": "communication problem between two FPGA board through UART", "label": "medium"}
+{"text": "Atmega328p RS232 communication what's wrong?", "label": "simple"}
+{"text": "Add a Custom Programmer on Arduino IDE : 5 Steps", "label": "simple"}
+{"text": "Crystal vs Oscillator: Which Should you Use?", "label": "simple"}
+{"text": "Code integration issue regarding esp32 cam module", "label": "medium"}
+{"text": "I am a bit confused regarding the baud rate of serial communication. Suppose I am sending a value of 198 to the receiver with a baud rate of 9600. At the receiver, the rate is also the same. Thus isn't it possible that the data is lost? This means that after 1/9600 s a data bit is sent, and at this time the data is received as well. This means at each edge we are receiving and data can be lost since edges are not that accurate. If we have the baud rate of the receiver a bit different so it takes the data a bit ahead from the edge then it will work fine. But we usually use the same. How doesn't it create a problem?", "label": "complex"}
+{"text": "How to set two timers running at the same time in atmega328p?", "label": "simple"}
+{"text": "ESP32 sporadically crashing with multiple I2C devices, heap issue?", "label": "medium"}
+{"text": "How to use MOSFETs to drive large loads with Arduino, ESP32", "label": "medium"}
+{"text": "What did I do wrong on my very first PCB ?", "label": "complex"}
+{"text": "How to Wake on LAN from Shutdown (power state S5) in Windows 10 v1909", "label": "simple"}
+{"text": "Foundation Fieldbus related issues", "label": "medium"}
+{"text": "How to dynamically adjust a timer with STM32", "label": "simple"}
+{"text": "The gateway is not working in Arduino EthernetENC", "label": "simple"}
+{"text": "Can I connect more than one ds18b20 to the same arduino?", "label": "simple"}
+{"text": "1wire using GPIO? - Raspberry Pi Forums", "label": "simple"}
+{"text": "I2S driver issue with ESP32-WROOM Thing plus C and WM8960 audio codec breakout", "label": "medium"}
+{"text": "How to program ATmega with fuses set to 32.768kHz clock?", "label": "simple"}
+{"text": "Arduino mega 2560+ GPRS shield + CAN-Bus shield problem. Can you please help me how do I connect from CAN-BUS Shield(SParkfun) to pins 50,51,52,53 directly without connecting to 10,11,12,13 pins", "label": "medium"}
+{"text": "How many pins are required to program an STM32 chip?", "label": "simple"}
+{"text": "STM32 WB55RGV6 OTA Firmware Update Does Not Work", "label": "simple"}
+{"text": "What are your best practices to make UART comms reliable and robust?\n\nI have been doing uart comms the basic way for a loong time: start of packet byte, length byte, data with escaped control bytes and crc. But as time goes on, I'm running into more and more challenging situations where this fails in critical scenarios. Sometimes the HW RX FIFO can't be cleared in time, for example. Other things happen sometimes that make my comms lose synchronization for a random length of time. So what techniques do you use to bullet-proof your uart comms? I have read about using sequence numbers, end of packet bytes, and longer start of packet sequences. How well do these work for people? Are they worth it to implement in critical scenarios? Is there a comms library out there that helps with this?", "label": "complex"}
+{"text": "Storing data (strings) if ethernet fails to send it", "label": "simple"}
+{"text": "Troubleshooting NMEA 2000 Network Issues on Boats", "label": "complex"}
+{"text": "ESP32-POE will not reliably boot and unable to flash", "label": "simple"}
+{"text": "Run C/C++ code in terminal instead of debug console in VS Code on macOS?", "label": "medium"}
+{"text": "Peak CAN ISO-TP problems and Address Mapping", "label": "simple"}
+{"text": "Conflict between UART serial transmission and timer interrupt Arduino MEGA", "label": "medium"}
+{"text": "Ethernet module ENC28C60 doesn't connect to internet when DHCP on router is disabled", "label": "simple"}
+{"text": "AVR Analog Comparator + Internal Pullup?", "label": "simple"}
+{"text": "Power over Ethernet? - emonPi - OpenEnergyMonitor Community", "label": "simple"}
+{"text": "How to fix a bad LED driver design", "label": "complex"}
+{"text": "Issues in Uart configuration at a ATmega4809 microcontroller", "label": "medium"}
+{"text": "What is the best way to power the ESP32 from a battery?", "label": "simple"}
+{"text": "How do I setup for RADIUS authentication on the SMS?", "label": "simple"}
+{"text": "How to send ASCII character from Microcontroller using Assembly", "label": "simple"}
+{"text": "What is the best way to get I2S output from streaming?", "label": "simple"}
+{"text": "Wireless communication problem using atmega8 with rf module", "label": "complex"}
+{"text": "how to use sd slot with atmega 328? - General Electronics", "label": "simple"}
+{"text": "How can I use PWM in power saving mode (ATmega328)?", "label": "medium"}
+{"text": "Using Arduino libraries with ARM based microcontroller", "label": "simple"}
+{"text": "Can I Implement a PLL on an Arduino?", "label": "complex"}
+{"text": "12 sensors connected to an ESP32. Since the ESP32 works with 3.3 V and the sensor output voltage is 5 V DC, I added a level shifter—in particular, this level shifter MOSFET. Basically, I have: 12 V DC to power the sensor and the ESP32; a 12 V DC to 3.3 V regulator and a 12 V DC to 5 V DC regulator; common GND between ESP32, sensor, and power supplies; the sensor goes on HV1, and the pin of the ESP32 for SDI goes to LV1 of the MOSFET level shifter; LV connected to 3.3 V, HV connected to 5 V DC. If I test with this setup, I have some sort of offset from 0 V on the 3.3 V side, so the ESP does not detect the response. If I use a simple voltage divider, everything works properly. In this case, the voltage generator is the sensor output, and the signal indicated with 3.205 V is where I connected the input pin of the ESP32, GND in common. Am I doing something wrong?", "label": "complex"}
+{"text": "Possible Cheap Ground Loop solution for UART? - Projects", "label": "medium"}
+{"text": "How Arduino IDE work with ESP32?", "label": "simple"}
+{"text": "120 V AC fan motor is overheating due to speed control circuit", "label": "simple"}
+{"text": "Can low jitter be achieved with STM32 microcontroller", "label": "medium"}
+{"text": "Differential ADC, can I have negative voltages at the input pins?", "label": "complex"}
+{"text": "How do I amplify voltage from a DAC?", "label": "complex"}
+{"text": "How to change the size of the ESP32's UART-TX-FIFO", "label": "medium"}
+{"text": "Noise in Power Adapter. Will Filter Work?", "label": "complex"}
+{"text": "Wake On Lan will not work no matter what", "label": "simple"}
+{"text": "Tips for multiple voltage regulators?", "label": "medium"}
+{"text": "Does anybody know how to get single channel DMA running to read data from a thermistor??( Stm32 Nucleo g4)\n\nI've tried almost everything , I've asked a lot of my peers for help , I've watched a ton of videos and implemented almost everything I could , but the result has been the same. Just a blank serial monitor. Nothing printed. I'm using a nucleo g491re If anyone has faced the issue and knows how to work around it, do share I would appreciate any help.", "label": "complex"}
+{"text": "I want to run two functions simultaneously on AVR microcontroller. Is there any method to do so?", "label": "simple"}
+{"text": "Why I feel stm32 Nucleo platform is good for DIYaudio", "label": "simple"}
+{"text": "If I wanted to power ESP32-CAM with POE, would I need to step it down?", "label": "simple"}
+{"text": "Problem reading an EEPROM chip using the I2C protocol", "label": "medium"}
+{"text": "How does one integrate WIFI & GSM into a microcontroller project with LWIP/TLS? - Page 1", "label": "simple"}
+{"text": "ESP32 » PLC? anyone familiar with doing this?", "label": "simple"}
+{"text": "Does Olimex ESP32-POE-ISO-EA work over wifi instead of POE as a bluetooth proxy?", "label": "simple"}
+{"text": "Arduino Mega 2560 not detected when connected to USB port", "label": "medium"}
+{"text": "How much noise is normal with multiple CTs plugged into the same ADC?", "label": "complex"}
+{"text": "MicroSD card reading problem with an STM32 chip", "label": "simple"}
+{"text": "Where does an ATmega328p go on the STK500?", "label": "simple"}
+{"text": "How to manage interrupts on an AVR?", "label": "simple"}
+{"text": "Receiving SMS by Arduino GSM Shield and control the LED with the content of this SMS?", "label": "simple"}
+{"text": "Do I need crystal for LSE in STM32 even if I have external RTC?\n\nI'm designing a circuit with an STM32L4 MCU. Do I still need to connect an external crystal to the MCU for the LSE if I'm already using an external RTC that has its own crystal?", "label": "complex"}
+{"text": "What's the simplest way to calibrate a thermistor?", "label": "simple"}
+{"text": "How to put an ATmega328 into sleep mode and wake it up without a button, without WDT", "label": "simple"}
+{"text": "DP83867E, Link two PHY's without an MAC for an Converter? 1000Base-T, Ethernet", "label": "simple"}
+{"text": "Becoming sick of PIO - recommendations?", "label": "simple"}
+{"text": "Whats the reason for noise in microphones?", "label": "medium"}
+{"text": "Can't get ledc not working in NodeMCU esp32. Need help fixing that, or finding another way to change pwm frequency when controlling a motor!\n\nHello, everyone! I'm using an arduino for my master's thesis, and im trying to change the frequency of the PWM on a motor as part of a thing i have to do for my thesis. For that i went ahead and tried to use ledc. However, i get a compilation error that says that ledcsetup was not declared in this scope. I'm using a NodeMCU esp32 that says esp32 devkit v1 on the back, I´m using Arduino IDE version 2.3.6, and Im using the esp32 by espressif systems version 3.3.0. In tools -&gt; Board, i have tried selecting both \"NodeMCU-32s\" and \"ESP32 Dev Module\", but i get the same error with both. I have tried unninstalling and reinstalling the esp32 by espressif systems á bunch of times and it didn't fix anything. when i go to tools -&gt; get board info, i get: \"BN: Unknown Board\" I don't know what else to try and im starting to climb up the walls a little bit! does anyone know how to solve this? or know another method of changing the PWM frequency without using ledc? Could it be that im selecting the wrong board in tools-&gt;board, and that's why im getting an unknown board, which then causes ledc to not work? im getting desperate and could really use some help! Thank you in advance :) edit: idk if this helps at all but here's a little test code im using just to check if ledc is working (this is not the actual code from my thesis) #include &lt;Arduino.h&gt; int ledPin = 14; void setup() { ledcSetup(0, 20000, 8); ledcAttachPin(ledPin, 0); ledcWrite(0, 128); } void loop() { }", "label": "complex"}
+{"text": "How to sync Galileo system time with atomic time", "label": "simple"}
+{"text": "Streaming raw PCM over socket.io results in noise", "label": "medium"}
+{"text": "distance without transceiver and level shifters?", "label": "medium"}
+{"text": "How does the Arduino handle serial buffer overflow?", "label": "complex"}
+{"text": "WiFi connection issues after entering credentials", "label": "medium"}
+{"text": "How to Connect RS232 to Laptop or PC", "label": "simple"}
+{"text": "How to connect custom stm32 board to debugger", "label": "medium"}
+{"text": "Should I add an RC filter to the analog input pin (STM32F103 ADC) for a triac light dimmer application?", "label": "complex"}
+{"text": "STM32 freeRTOS data corruption when writing to sd card", "label": "simple"}
+{"text": "How to read information coming from RS232 on Arduino ATMEGA2560-PRO-CH340 on custom baud rate?", "label": "simple"}
+{"text": "Use Atmel-ICE programmer for other JTAG debugging", "label": "medium"}
+{"text": "How to feed custom RGB Led keyboard backlight", "label": "simple"}
+{"text": "how to use multiple adc channel of atmega16 one at time", "label": "complex"}
+{"text": "Do my logic level mosfets still require a gate driver?", "label": "medium"}
+{"text": "Could I Read Status of Lights (brake, turn signal, running etc.) via OBD II?", "label": "simple"}

@@ -9,7 +9,6 @@ env/
 
 # Model artifacts and large data (adjust as needed)
 artifacts/
-data/labeled*.jsonl
 data/old/
 
 # OS / editor
