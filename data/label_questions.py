@@ -6,6 +6,8 @@ Input JSONL format (one object per line):
 
 Usage:
   python data/label_questions.py --input data/qa_final_pairs.jsonl --output data/labeled.jsonl --val_ratio 0.1
+  # With validation split and minimum length filter:
+  python data/label_questions.py --input data/qa_final_pairs.jsonl --output data/labeled_train.jsonl --val_output data/labeled_val.jsonl --val_ratio 0.1 --min_len 25
 
 Notes:
   - Labels are heuristic; review and adjust rules/thresholds as needed.
@@ -16,6 +18,31 @@ import argparse
 import json
 import random
 from pathlib import Path
+
+
+def is_questionish(text: str, min_len: int) -> bool:
+    """Basic check to filter out titles/headlines that are not real questions."""
+    if not text:
+        return False
+    stripped = text.strip()
+    if len(stripped) < min_len:
+        return False
+    lower = stripped.lower()
+    if lower.startswith(("http://", "https://")):
+        return False
+    has_qmark = "?" in stripped
+    question_words = (
+        "what", "why", "how", "when", "where", "which", "who",
+        "can", "should", "do", "does", "did", "is", "are",
+        "could", "would", "will", "may", "shall",
+    )
+    starts_qword = lower.startswith(question_words)
+    # Titles with separators and no question mark/word are likely not questions.
+    looks_like_title = (" - " in stripped or " | " in stripped) and not has_qmark and not starts_qword
+    if looks_like_title:
+        return False
+    # Allow questions without a '?' as long as they aren't titles and meet length.
+    return True
 
 
 def classify_question(text: str) -> str:
@@ -35,11 +62,24 @@ def classify_question(text: str) -> str:
         "resistor", "capacitor", "inductor", "op-amp", "mosfet", "bjt",
         "spi", "i2c", "uart", "pwm",
     ]
+    troubleshoot_keywords = [
+        "troubleshoot", "debug", "fix", "failure", "error", "issue", "bug",
+        "latency", "delay", "dropped", "unstable", "reset", "fault", "crash",
+        "jitter", "noise", "glitch", "disconnect", "overrun", "underrun",
+        "usb", "adapter", "driver",
+    ]
 
     complex_hits = sum(1 for k in complex_keywords if k in t)
     medium_hits = sum(1 for k in medium_keywords if k in t)
+    troubleshoot_hits = sum(1 for k in troubleshoot_keywords if k in t)
 
     has_code = "```" in text or "int " in text or "void " in text or "#include" in text
+
+    # Troubleshooting is at least medium; longer or with complex terms -> complex.
+    if troubleshoot_hits > 0:
+        if length > 220 or complex_hits > 0:
+            return "complex"
+        return "medium"
 
     # Length-based heuristics (characters, rough proxy)
     if length > 450 or complex_hits >= 2:
@@ -58,7 +98,8 @@ def classify_question(text: str) -> str:
     return "medium"
 
 
-def load_questions(path: Path):
+def load_questions(path: Path, min_len: int):
+    kept, skipped = 0, 0
     with path.open("r", encoding="utf-8") as f:
         for line in f:
             if not line.strip():
@@ -68,8 +109,12 @@ def load_questions(path: Path):
             except json.JSONDecodeError:
                 continue
             q = obj.get("question")
-            if q:
+            if q and is_questionish(q, min_len):
+                kept += 1
                 yield q.strip()
+            else:
+                skipped += 1
+    print(f"Filtered questions: kept={kept}, skipped={skipped}")
 
 
 def main():
@@ -78,9 +123,10 @@ def main():
     parser.add_argument("--output", required=True, help="Path to labeled JSONL")
     parser.add_argument("--val_output", help="Optional path for validation split JSONL")
     parser.add_argument("--val_ratio", type=float, default=0.0, help="Fraction for validation split (0-0.5)")
+    parser.add_argument("--min_len", type=int, default=20, help="Minimum question length to keep")
     args = parser.parse_args()
 
-    questions = list(load_questions(Path(args.input)))
+    questions = list(load_questions(Path(args.input), args.min_len))
     random.shuffle(questions)
 
     labeled = [{"text": q, "label": classify_question(q)} for q in questions]

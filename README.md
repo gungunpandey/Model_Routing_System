@@ -9,13 +9,14 @@ Minimal, stepwise scaffold for a cost-aware LLM router using FastAPI, a Phi-3 di
 - `requirements.txt` — Python deps.
 - `Dockerfile`, `docker-compose.yml` — container setup for API + Postgres.
 - `data/`, `artifacts/` — placeholders for datasets and saved models.
+- `data/label_questions.py` — heuristic labeling script to clean/label raw QA into train/val.
 
 Key behaviors:
 - Safety/PII precheck rejects obvious sensitive or unsafe prompts.
 - Routing picks Phi-3 / Llama-3 / GPT-4o based on predicted difficulty + confidence + guard words.
 - Pricing reads from `cost_rates` in Postgres (falls back to defaults if missing).
-- GPT-4o call uses OpenAI if `OPENAI_API_KEY` is set; otherwise returns a stub string. Phi-3/Llama-3 are still stubbed—swap with your real clients.
-- HuggingFace Inference is wired for Phi-3 and Llama-3 if you set `HF_TOKEN`. Without it, those calls return stub text.
+- GPT-4o call uses Azure OpenAI only (no OpenAI fallback). Phi-3/Llama-3 use HuggingFace Inference if `HF_TOKEN` is set; otherwise return stub text.
+- Labeling script filters non-questions and labels difficulty; troubleshooting prompts are at least medium.
 
 ## Quickstart
 1) Install deps (local dev):
@@ -48,16 +49,18 @@ curl -X POST http://localhost:8000/generate \
   -d '{"user_id":"u1","prompt":"Write a 2-sentence summary of KNN vs K-means."}'
 ```
 
-## Train the classifier (Colab)
-Upload your `data/train.jsonl` and `data/val.jsonl` (fields: `text`, `label` in {simple, medium, complex}) then run:
+## Prepare & label data
+Run heuristic labeling on your QA pairs (PowerShell example):
+```
+python data/label_questions.py --input data/qa_final_pairs.jsonl --output data/labeled_train.jsonl --val_output data/labeled_val.jsonl --val_ratio 0.1 --min_len 25
+```
+See `data/labeling_rules.txt` for how filters/labels work.
+
+## Train the classifier (Colab or local GPU)
+Use the labeled files (fields: `text`, `label` in {simple, medium, complex}):
 ```
 !pip install -r requirements.txt
 !python train_classifier.py --train data/train.jsonl --val data/val.jsonl --out artifacts/phi3-difficulty-classifier
 ```
 Sync the resulting `artifacts/phi3-difficulty-classifier` back to this repo (and mount it in Compose).
-
-## Notes / Next steps
-- Replace stub model clients and pricing with real providers and DB `cost_rates` lookup.
-- Add safety/PII prechecks and better token counting.
-- Add tests for routing and pricing logic.
 

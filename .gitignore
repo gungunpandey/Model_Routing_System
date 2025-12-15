@@ -10,9 +10,15 @@ env/
 # Model artifacts and large data (adjust as needed)
 artifacts/
 data/labeled*.jsonl
+data/old/
 
 # OS / editor
 .DS_Store
 *.swp
 *.swo
+
+# Local project docs to ignore
+project_desc.txt
+project_steps.txt
+
 

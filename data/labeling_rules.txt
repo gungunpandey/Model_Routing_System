@@ -1,0 +1,33 @@
+Labeling rules (used in data/label_questions.py)
+-----------------------------------------------
+
+Goal: assign a difficulty label (simple, medium, complex) to each prompt before training the classifier.
+
+Filtering (drop non-questions)
+- Skip if too short (< min_len, default 20; you can raise to 25–30).
+- Skip URLs.
+- Skip title-like strings (contain " - " or " | " and do not look like questions).
+- Questions without "?" are allowed if they’re not title-like and meet length.
+
+Keyword buckets
+- complex_keywords: design, optimize, stability, compensation, thermal, efficiency, isolation, emi, ringing, overshoot, layout, pcb, buck, boost, adc, dac, filter, pll, rf, impedance, transient, protection, esd, safety, diagnose, troubleshoot, trade-off, analysis
+- medium_keywords: calculate, compute, derive, select, choose, configure, interface, debounce, level shift, gain, cutoff, frequency, current, voltage, resistor, capacitor, inductor, op-amp, mosfet, bjt, spi, i2c, uart, pwm
+- troubleshoot_keywords (treated specially): troubleshoot, debug, fix, failure, error, issue, bug, latency, delay, dropped, unstable, reset, fault, crash, jitter, noise, glitch, disconnect, overrun, underrun, usb, adapter, driver
+
+Heuristic labeling (order matters)
+1) Troubleshooting: if any troubleshoot_keywords hit:
+   - complex if length > 220 or any complex_keyword present
+   - else medium
+2) If length > 450 or complex_keywords ≥ 2 → complex
+3) If code present (``` or C-like markers) AND (medium or complex keywords present) → medium
+4) If length < 140 AND no medium/complex keywords → simple
+5) If 140–320 AND medium keywords present AND no complex keywords → medium
+6) If medium_keywords ≥ 2 AND no complex keywords → medium
+7) Fallback: if any complex keyword → complex; else medium
+
+Tips to adjust
+- To reduce short/underspecified “complex” labels, require length + complex keywords (e.g., length > 200 AND complex_hits ≥ 1) before step 7.
+- To be stricter on questions, raise min_len to 25–30.
+- To demote some troubleshooting to medium, raise the length threshold above 220 or require ≥2 complex keywords.
+- To allow more “simple” cases, widen the <140 rule or relax keyword checks, but watch for mislabels.
+
