@@ -6,9 +6,6 @@ env/
 
 # Local environment and secrets
 .env
-
-# Model artifacts and large data (adjust as needed)
-artifacts/
 data/old/
 
 # OS / editor
