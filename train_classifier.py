@@ -60,8 +60,22 @@ def main(args):
     if torch.cuda.is_available():
         logger.info(f"GPU: {torch.cuda.get_device_name(0)}")
         logger.info(f"GPU Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
+        logger.info(f"GPU Memory Free: {torch.cuda.memory_reserved(0) / 1e9:.2f} GB")
     else:
         logger.warning("No GPU detected! Training will be very slow on CPU.")
+    
+    # Check system RAM (approximate)
+    try:
+        import psutil
+        ram_gb = psutil.virtual_memory().total / 1e9
+        ram_available_gb = psutil.virtual_memory().available / 1e9
+        logger.info(f"System RAM: {ram_gb:.2f} GB total, {ram_available_gb:.2f} GB available")
+        if ram_available_gb < 10:
+            logger.warning("⚠️  Low RAM detected! Model loading may fail.")
+            logger.warning("   Consider: 1) Restart runtime, 2) Use Colab Pro, 3) Reduce batch_size to 2")
+    except ImportError:
+        logger.info("psutil not available - skipping RAM check")
+        logger.info("Install with: pip install psutil")
     
     label2id = {l: i for i, l in enumerate(LABELS)}
     id2label = {i: l for l, i in label2id.items()}
@@ -79,31 +93,74 @@ def main(args):
     logger.info("Tokenizing datasets...")
     ds = ds.map(lambda batch: encode_example(batch, tok, label2id), batched=True).remove_columns(["text", "label"])
     logger.info("Tokenization complete")
+    
+    # Clear memory before loading model
+    import gc
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    logger.info("Memory cleared before model loading")
 
     logger.info(f"Loading model from {MODEL_NAME}...")
     logger.info("(This may take a few minutes to download model weights...)")
     logger.info("Please be patient - do not interrupt during model loading!")
+    logger.info("Using memory optimizations: float16, low_cpu_mem_usage, device_map")
     try:
+        # Use device_map="auto" to automatically offload to GPU
+        model_kwargs = {
+            "num_labels": len(LABELS),
+            "id2label": id2label,
+            "label2id": label2id,
+            "low_cpu_mem_usage": True,
+        }
+        
+        if torch.cuda.is_available():
+            model_kwargs["torch_dtype"] = torch.float16
+            model_kwargs["device_map"] = "auto"  # Automatically use GPU
+        
         model = AutoModelForSequenceClassification.from_pretrained(
             MODEL_NAME,
-            num_labels=len(LABELS),
-            id2label=id2label,
-            label2id=label2id,
-            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-            low_cpu_mem_usage=True,
+            **model_kwargs
         )
         logger.info("Model loaded successfully")
         logger.info(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
         logger.info(f"Model device: {next(model.parameters()).device}")
+    except RuntimeError as e:
+        error_msg = str(e).lower()
+        if "out of memory" in error_msg or "cuda" in error_msg:
+            logger.error("=" * 60)
+            logger.error("⚠️  OUT OF MEMORY ERROR ⚠️")
+            logger.error("=" * 60)
+            logger.error("Colab free tier has limited RAM (~12GB). Phi-3-mini needs ~8GB+ to load.")
+            logger.error("")
+            logger.error("SOLUTIONS:")
+            logger.error("  1. RESTART RUNTIME: Runtime → Restart runtime (clears memory)")
+            logger.error("  2. USE COLAB PRO: More RAM available (recommended)")
+            logger.error("  3. REDUCE BATCH SIZE: --batch_size 2 --eval_batch_size 4")
+            logger.error("  4. USE SMALLER MODEL: Consider distilbert-base-uncased for testing")
+            logger.error("  5. USE GRADIO/KAGGLE: Free GPU with more RAM")
+            logger.error("")
+            logger.error(f"Error details: {e}")
+        else:
+            logger.error(f"Failed to load model: {e}")
+            logger.error("This might be due to:")
+            logger.error("  1. Colab session timeout (restart runtime and try again)")
+            logger.error("  2. Insufficient memory (try reducing batch_size)")
+            logger.error("  3. Network issues (check internet connection)")
+        sys.exit(1)
     except Exception as e:
         logger.error(f"Failed to load model: {e}")
-        logger.error("This might be due to:")
-        logger.error("  1. Colab session timeout (restart runtime and try again)")
-        logger.error("  2. Insufficient memory (try reducing batch_size)")
-        logger.error("  3. Network issues (check internet connection)")
+        logger.error("Unexpected error - check logs above for details")
         sys.exit(1)
 
     logger.info("Setting up training arguments...")
+    logger.info("Enabling memory optimizations: gradient_checkpointing, fp16, dataloader_pin_memory=False")
+    
+    # Enable gradient checkpointing to save memory
+    if hasattr(model, "gradient_checkpointing_enable"):
+        model.gradient_checkpointing_enable()
+        logger.info("Gradient checkpointing enabled")
+    
     train_args = TrainingArguments(
         output_dir="out",
         per_device_train_batch_size=args.batch_size,
@@ -114,7 +171,10 @@ def main(args):
         save_strategy="epoch",
         load_best_model_at_end=True,
         logging_steps=50,
-        fp16=True,
+        fp16=True if torch.cuda.is_available() else False,
+        dataloader_pin_memory=False,  # Save RAM
+        gradient_accumulation_steps=2,  # Effective batch size = batch_size * 2
+        max_grad_norm=1.0,
     )
 
     logger.info("Initializing Trainer...")
