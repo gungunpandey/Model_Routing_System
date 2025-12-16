@@ -6,6 +6,7 @@ Usage (example):
 !python train_classifier.py --train data/train.jsonl --val data/val.jsonl --out artifacts/phi3-difficulty-classifier
 """
 import argparse
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +18,9 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logger = logging.getLogger(__name__)
 
 
 LABELS = ["simple", "medium", "complex"]
@@ -39,24 +43,43 @@ def compute_metrics(eval_pred):
 
 
 def main(args):
+    logger.info("=" * 60)
+    logger.info("Starting Phi-3 Difficulty Classifier Training")
+    logger.info("=" * 60)
+    logger.info(f"Train file: {args.train}")
+    logger.info(f"Val file: {args.val}")
+    logger.info(f"Output dir: {args.out}")
+    logger.info(f"Batch size: {args.batch_size}, Eval batch: {args.eval_batch_size}")
+    logger.info(f"Learning rate: {args.lr}, Epochs: {args.epochs}")
+    
     label2id = {l: i for i, l in enumerate(LABELS)}
     id2label = {i: l for l, i in label2id.items()}
+    logger.info(f"Labels: {LABELS}")
 
+    logger.info("Loading datasets...")
     ds = load_dataset(
         "json",
         data_files={"train": args.train, "val": args.val},
     )
+    logger.info(f"Loaded {len(ds['train'])} train examples, {len(ds['val'])} val examples")
 
+    logger.info(f"Loading tokenizer from {MODEL_NAME}...")
     tok = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, padding_side="left", truncation_side="left")
+    logger.info("Tokenizing datasets...")
     ds = ds.map(lambda batch: encode_example(batch, tok, label2id), batched=True).remove_columns(["text", "label"])
+    logger.info("Tokenization complete")
 
+    logger.info(f"Loading model from {MODEL_NAME}...")
+    logger.info("(This may take a few minutes to download model weights...)")
     model = AutoModelForSequenceClassification.from_pretrained(
         MODEL_NAME,
         num_labels=len(LABELS),
         id2label=id2label,
         label2id=label2id,
     )
+    logger.info("Model loaded successfully")
 
+    logger.info("Setting up training arguments...")
     train_args = TrainingArguments(
         output_dir="out",
         per_device_train_batch_size=args.batch_size,
@@ -70,6 +93,7 @@ def main(args):
         fp16=True,
     )
 
+    logger.info("Initializing Trainer...")
     trainer = Trainer(
         model=model,
         args=train_args,
@@ -79,12 +103,23 @@ def main(args):
         compute_metrics=compute_metrics,
     )
 
+    logger.info("=" * 60)
+    logger.info("Starting training...")
+    logger.info("=" * 60)
+    logger.info("DO NOT INTERRUPT - Training in progress...")
     trainer.train()
+    logger.info("Training completed successfully!")
 
+    logger.info("=" * 60)
+    logger.info("Saving model and tokenizer...")
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     trainer.save_model(out_dir)
     tok.save_pretrained(out_dir)
+    logger.info(f"Model saved to: {out_dir.absolute()}")
+    logger.info("=" * 60)
+    logger.info("Training pipeline completed!")
+    logger.info("=" * 60)
 
 
 if __name__ == "__main__":
