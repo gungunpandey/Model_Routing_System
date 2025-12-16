@@ -7,9 +7,11 @@ Usage (example):
 """
 import argparse
 import logging
+import sys
 from pathlib import Path
 
 import numpy as np
+import torch
 from datasets import load_dataset
 from sklearn.metrics import accuracy_score, f1_score
 from transformers import (
@@ -52,6 +54,15 @@ def main(args):
     logger.info(f"Batch size: {args.batch_size}, Eval batch: {args.eval_batch_size}")
     logger.info(f"Learning rate: {args.lr}, Epochs: {args.epochs}")
     
+    # Check GPU availability
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    logger.info(f"Device: {device}")
+    if torch.cuda.is_available():
+        logger.info(f"GPU: {torch.cuda.get_device_name(0)}")
+        logger.info(f"GPU Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
+    else:
+        logger.warning("No GPU detected! Training will be very slow on CPU.")
+    
     label2id = {l: i for i, l in enumerate(LABELS)}
     id2label = {i: l for l, i in label2id.items()}
     logger.info(f"Labels: {LABELS}")
@@ -71,13 +82,26 @@ def main(args):
 
     logger.info(f"Loading model from {MODEL_NAME}...")
     logger.info("(This may take a few minutes to download model weights...)")
-    model = AutoModelForSequenceClassification.from_pretrained(
-        MODEL_NAME,
-        num_labels=len(LABELS),
-        id2label=id2label,
-        label2id=label2id,
-    )
-    logger.info("Model loaded successfully")
+    logger.info("Please be patient - do not interrupt during model loading!")
+    try:
+        model = AutoModelForSequenceClassification.from_pretrained(
+            MODEL_NAME,
+            num_labels=len(LABELS),
+            id2label=id2label,
+            label2id=label2id,
+            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+            low_cpu_mem_usage=True,
+        )
+        logger.info("Model loaded successfully")
+        logger.info(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
+        logger.info(f"Model device: {next(model.parameters()).device}")
+    except Exception as e:
+        logger.error(f"Failed to load model: {e}")
+        logger.error("This might be due to:")
+        logger.error("  1. Colab session timeout (restart runtime and try again)")
+        logger.error("  2. Insufficient memory (try reducing batch_size)")
+        logger.error("  3. Network issues (check internet connection)")
+        sys.exit(1)
 
     logger.info("Setting up training arguments...")
     train_args = TrainingArguments(
@@ -107,19 +131,39 @@ def main(args):
     logger.info("Starting training...")
     logger.info("=" * 60)
     logger.info("DO NOT INTERRUPT - Training in progress...")
-    trainer.train()
-    logger.info("Training completed successfully!")
+    try:
+        trainer.train()
+        logger.info("Training completed successfully!")
+    except KeyboardInterrupt:
+        logger.error("Training was interrupted! Model may be incomplete.")
+        sys.exit(1)
+    except Exception as e:
+        logger.error(f"Training failed: {e}")
+        logger.error("Check GPU memory and Colab session status.")
+        sys.exit(1)
 
     logger.info("=" * 60)
     logger.info("Saving model and tokenizer...")
-    out_dir = Path(args.out)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    trainer.save_model(out_dir)
-    tok.save_pretrained(out_dir)
-    logger.info(f"Model saved to: {out_dir.absolute()}")
-    logger.info("=" * 60)
-    logger.info("Training pipeline completed!")
-    logger.info("=" * 60)
+    try:
+        out_dir = Path(args.out)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        trainer.save_model(out_dir)
+        tok.save_pretrained(out_dir)
+        logger.info(f"Model saved to: {out_dir.absolute()}")
+        
+        # Verify files were saved
+        required_files = ["config.json", "pytorch_model.bin"]
+        if not all((out_dir / f).exists() for f in required_files):
+            # Check for safetensors format
+            safetensors_files = list(out_dir.glob("*.safetensors"))
+            if not safetensors_files:
+                logger.warning("Warning: Some model files may be missing!")
+        logger.info("=" * 60)
+        logger.info("Training pipeline completed!")
+        logger.info("=" * 60)
+    except Exception as e:
+        logger.error(f"Failed to save model: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
